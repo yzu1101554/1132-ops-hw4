@@ -1,0 +1,13 @@
+[gemini]
+api_key = ""
+model_name = "gemini-2.0-flash"
+system_instruction = "請使用繁體中文回答，用字遣詞請以台灣為主，請避免中國大陸及港澳用法"
+
+[line]
+channel_secret = ""
+channel_access_token = ""
+
+[AzureTranslator]
+Key = ""
+EndPoint = "https://.cognitiveservices.azure.com/"
+Region = "japaneast"
