@@ -228,6 +228,29 @@ def handle_text_message(event):
 
         return
 
+    elif text.lower() == 'get-uid':
+        reply_message = TextSendMessage(text=event.source.user_id)
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            reply_message,
+        )
+
+        with open(filename, 'r', encoding='utf-8') as f:
+            j = json.load(f)
+
+        j['history'].append({
+            "timestamp": event.timestamp,
+            "event": json.loads(str(event)),
+            "reply_message": json.loads(str(reply_message)),
+            "deleted": False,
+        })
+
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(j, f, ensure_ascii=False, indent=2)
+
+        return
+
     elif text.lower() == 'sticker':
         reply_message = StickerSendMessage(
             package_id='11539',
